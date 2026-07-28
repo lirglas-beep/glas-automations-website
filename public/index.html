@@ -777,12 +777,16 @@ details.fallback>summary h3{font-size:16px}
 
 <script>
 /* ============================================================
-   THE ONLY PLACEHOLDER IN THIS FILE.
-   Replace with the n8n production webhook URL. Both forms POST
-   JSON here. Until it is replaced, a submit shows the mailto /
-   text fallback rather than leaving a dead button.
+   Both forms POST JSON here. This is the production webhook on
+   the n8n workflow "Glas Automations - Website Contact Form"
+   (xXGCdMnSVV84TtBe), which emails the lead to lir@ with
+   Reply-To set to the sender when they left an email address.
+
+   If the workflow is ever deactivated or the path changes, the
+   POST fails and the forms fall back to showing the mailto /
+   text links rather than leaving a dead button.
    ============================================================ */
-var N8N_WEBHOOK_URL = "N8N_WEBHOOK_URL_PLACEHOLDER";
+var N8N_WEBHOOK_URL = "https://lirglas.app.n8n.cloud/webhook/3294b235-b9dc-48fa-8c8d-9b2a3cae60c3/glas-site-contact";
 
 var EMAIL = "lir@glasautomations.com";
 var TEL = "+17324700535";

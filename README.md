@@ -53,9 +53,10 @@ npx serve public
 - **If you ever zip this by hand, use forward slashes.** Windows tools write
   `assets\file.pdf` into the archive, Cloudflare stores that key literally, and
   every asset 404s while the HTML still loads fine.
-- **`N8N_WEBHOOK_URL` at the top of the script block** must hold the real n8n
-  production webhook URL. While it is the placeholder, both forms fall back to
-  showing the mailto/text link instead of submitting.
+- **`N8N_WEBHOOK_URL` at the top of the script block** holds the live n8n
+  production webhook. If that workflow is deactivated, or its webhook path
+  changes, every submission fails and the forms fall back to showing the
+  mailto/text links. Deactivating the workflow silently breaks both forms.
 
 ## Where the forms go
 
