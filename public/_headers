@@ -1,0 +1,15 @@
+# Cloudflare static-asset header rules.
+
+# Keep the one-pager PDFs out of search results so they don't compete with the
+# page for the same queries. This is the X-Robots-Tag rule referenced in the
+# comment at the top of index.html; robots.txt disallows crawling them as well.
+/assets/*.pdf
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=3600
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# The one-pager PDFs duplicate the page copy. Keep them out of the index so they
+# do not compete with the page for the same queries. Belt and braces: also serve
+# /assets/*.pdf with an `X-Robots-Tag: noindex` response header.
+Disallow: /assets/automation-examples.pdf
+Disallow: /assets/pricing.pdf
+Disallow: /assets/how-it-works.pdf
+
+Sitemap: https://glasautomations.com/sitemap.xml

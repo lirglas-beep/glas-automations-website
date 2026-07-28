@@ -1,0 +1,14 @@
+{
+  // Static-asset Worker for glasautomations.com.
+  // "name" must stay "glasautomations" — it targets the existing Worker, which
+  // already has glasautomations.com and www.glasautomations.com attached to it.
+  // Renaming this creates a NEW Worker and the custom domains stay on the old one.
+  "name": "glasautomations",
+  "compatibility_date": "2026-07-28",
+
+  // Only ./public is uploaded. Anything outside it (index-old.html, README,
+  // this config) stays in the repo and is never served.
+  "assets": {
+    "directory": "./public"
+  }
+}

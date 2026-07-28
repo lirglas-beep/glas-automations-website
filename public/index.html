@@ -1,0 +1,1031 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workflow Automation for Small Service Businesses | Glas Automations</title>
+<meta name="description" content="Automate missed calls, quote follow-ups, invoices, review requests and receipts. I build the systems that catch the work you already earned.">
+<link rel="canonical" href="https://glasautomations.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://glasautomations.com/">
+<meta property="og:site_name" content="Glas Automations">
+<meta property="og:title" content="Workflow Automation for Small Service Businesses | Glas Automations">
+<meta property="og:description" content="Automate missed calls, quote follow-ups, invoices, review requests and receipts. I build the systems that catch the work you already earned.">
+<meta property="og:image" content="https://glasautomations.com/assets/glas-lockup-horizontal.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Workflow Automation for Small Service Businesses | Glas Automations">
+<meta name="twitter:description" content="Automate missed calls, quote follow-ups, invoices, review requests and receipts. I build the systems that catch the work you already earned.">
+<meta name="twitter:image" content="https://glasautomations.com/assets/glas-lockup-horizontal.png">
+
+<link rel="icon" href="/assets/glas-icon-square-violet.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/glas-icon-square-violet.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!--
+  SEO NOTE: /assets/*.pdf should be served with `X-Robots-Tag: noindex` so the three
+  one-pager PDFs do not compete with this page for the same queries. On Cloudflare
+  Workers that is a response-header rule on the /assets/*.pdf path. robots.txt beside
+  this file disallows crawling them as a second line of defence.
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Do I have to buy new software?","acceptedAnswer":{"@type":"Answer","text":"No. You keep QuickBooks, Jobber, Housecall Pro, whatever you already pay for - in your name, on your accounts. I connect to what's already there."}},
+    {"@type":"Question","name":"Do I have to learn anything?","acceptedAnswer":{"@type":"Answer","text":"No. It runs behind the tools you already use. If it's working, you shouldn't notice it at all - that's the whole point."}},
+    {"@type":"Question","name":"What happens when it breaks at six in the morning?","acceptedAnswer":{"@type":"Answer","text":"It's monitored around the clock. I usually know before you do, and fixing it is included in your monthly plan, not billed as an extra."}},
+    {"@type":"Question","name":"How do I know it's actually working?","acceptedAnswer":{"@type":"Answer","text":"Every workflow is monitored, and you get a plain-english summary of what ran and what it caught. If something stops, I hear about it, not you."}},
+    {"@type":"Question","name":"Can I start with just one thing?","acceptedAnswer":{"@type":"Answer","text":"You should. Pick the one that annoys you most, let it run for a month, and add more once you trust it. Most people do it that way."}},
+    {"@type":"Question","name":"Why is there a monthly plan at all?","acceptedAnswer":{"@type":"Answer","text":"Because software nobody watches quietly stops working. The monthly plan is hosting, monitoring, and repairs - it's what keeps the thing alive after launch."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Glas Automations",
+  "url": "https://glasautomations.com/",
+  "email": "lir@glasautomations.com",
+  "telephone": "+1-732-470-0535",
+  "image": "https://glasautomations.com/assets/glas-lockup-horizontal.png",
+  "logo": "https://glasautomations.com/assets/glas-lockup-horizontal.png",
+  "description": "Workflow automation for small service businesses. Missed-call text-back, quote follow-up, invoicing, review requests and receipt capture.",
+  "founder": {"@type":"Person","name":"Lir Glas"},
+  "areaServed": [
+    {"@type":"State","name":"New Jersey"},
+    {"@type":"State","name":"Pennsylvania"}
+  ],
+  "knowsAbout": ["Workflow automation","Missed call text back","Invoice automation","Review requests","Appointment reminders"]
+}
+</script>
+
+<style>
+:root{
+  --paper:#FBFAF7; --paper-alt:#F5F3EE; --ink:#111111; --body:#2B2A28;
+  --muted:#57534B; --gray:#6E6A63; --gray-soft:#9A968D;
+  --accent:#5847FF; --accent-hover:#3A2CE0;
+  --hairline:#EBE7DF; --hairline-alt:#E0DCD3;
+  --on-dark:#FBFAF7; --on-dark-mute:#C9C6BF; --on-dark-faint:#7D7A73;
+  --accent-tint:rgba(88,71,255,0.07); --accent-tint-b:rgba(88,71,255,0.20);
+  --font-sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-display:"Sora","Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --wrap:1120px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--body);
+  font-family:var(--font-sans); font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+a{color:var(--accent); text-decoration:none}
+a:hover{color:var(--accent-hover)}
+p{text-wrap:pretty}
+h1,h2,h3,h4{text-wrap:balance; margin:0}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+.wrap{max-width:var(--wrap); margin:0 auto; padding-left:24px; padding-right:24px}
+.sec{padding-top:clamp(64px,9vw,120px); padding-bottom:clamp(64px,9vw,120px)}
+.sec-quiet{padding-top:clamp(48px,6vw,72px); padding-bottom:clamp(48px,6vw,72px)}
+.bg-alt{background:var(--paper-alt)}
+.bg-ink{background:var(--ink); color:var(--on-dark)}
+section[id]{scroll-margin-top:70px}
+
+h1{font-family:var(--font-display); font-size:clamp(40px,6.2vw,68px); font-weight:600; line-height:1.02; letter-spacing:-.02em; color:var(--ink)}
+h2{font-family:var(--font-display); font-size:clamp(32px,4.4vw,50px); font-weight:500; line-height:1.04; letter-spacing:-.02em; color:var(--ink)}
+.bg-ink h2{color:var(--on-dark)}
+.h2-statement{font-family:var(--font-display); font-size:clamp(21px,2.6vw,30px); font-weight:500; line-height:1.30; letter-spacing:-.01em; color:var(--ink)}
+.bg-ink .h2-statement{color:var(--on-dark)}
+h3{font-size:clamp(22px,2.6vw,28px); font-weight:500; line-height:1.15; letter-spacing:-.01em; color:var(--ink)}
+h3.h3-sm{font-size:clamp(20px,2.2vw,24px); line-height:1.2}
+h4{font-size:clamp(17px,1.9vw,19px); font-weight:500; line-height:1.35; color:var(--ink)}
+.lead{font-size:clamp(17px,1.8vw,20px); line-height:1.6; color:var(--body)}
+.eyebrow{font-family:var(--font-mono); font-size:13px; font-weight:500; text-transform:uppercase; letter-spacing:.04em; color:var(--gray); margin:0}
+.ord{font-family:var(--font-mono); font-size:13px; font-weight:500; letter-spacing:.04em; color:var(--accent)}
+.meta{font-family:var(--font-mono); font-size:11px; color:var(--gray-soft)}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:var(--font-sans); font-size:15px; font-weight:600; line-height:1;
+  padding:14px 20px; min-height:46px; border-radius:12px; border:1px solid transparent;
+  background:var(--accent); color:#fff; cursor:pointer; text-align:center;
+  transition:background .2s ease, transform .2s ease;
+}
+.btn:hover{background:var(--accent-hover); color:#fff}
+.btn:active{transform:translateY(1px)}
+.btn-lg{font-size:16px; padding:17px 26px; min-height:52px}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--hairline-alt)}
+.btn-ghost:hover{background:#fff; color:var(--ink); border-color:var(--gray-soft)}
+
+/* ---------- header ---------- */
+.hdr{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,250,247,.82); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--hairline);
+}
+.hdr-in{display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding-top:13px; padding-bottom:13px}
+.hdr-logo{display:inline-flex; align-items:center; min-height:44px}
+.hdr-logo img{height:28px; width:auto}
+.nav{display:flex; align-items:center; gap:22px; flex-wrap:wrap; margin:0 auto}
+.nav a{display:inline-flex; align-items:center; min-height:44px; font-size:15px; font-weight:500; color:var(--body)}
+.nav a:hover{color:var(--accent)}
+.hdr .btn{padding:11px 16px; min-height:44px; font-size:14px; border-radius:11px}
+
+/* ---------- hero ---------- */
+.hero-grid{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:clamp(36px,5vw,72px); align-items:center;
+}
+.hero h1{margin:14px 0 0}
+.hero .lead{margin:22px 0 0; max-width:33em}
+.hero .btn{margin-top:30px}
+
+.phone-col{display:flex; flex-direction:column; align-items:center}
+.phone{
+  width:100%; max-width:322px; background:var(--ink); border-radius:40px; padding:12px;
+  box-shadow:0 34px 70px -34px rgba(17,17,17,.55); border:1px solid #23232a;
+}
+.phone-screen{background:var(--paper); border-radius:30px; overflow:hidden; height:452px; display:flex; flex-direction:column}
+.phone-bar{padding:14px 16px 10px; border-bottom:1px solid var(--hairline); background:#fff; display:flex; align-items:center; gap:10px; flex:0 0 auto}
+.phone-dot{width:30px; height:30px; border-radius:999px; background:var(--accent); flex:0 0 auto}
+.phone-who{font-size:14px; font-weight:600; color:var(--ink); line-height:1.2}
+.phone-sub{font-family:var(--font-mono); font-size:10px; color:var(--gray-soft)}
+.thread{flex:1 1 auto; overflow:hidden; padding:14px 14px 18px; display:flex; flex-direction:column; gap:10px}
+.row{display:flex; flex-direction:column; max-width:82%}
+.row.out{align-self:flex-end; align-items:flex-end}
+.row.in{align-self:flex-start; align-items:flex-start}
+.row .meta{margin-bottom:4px}
+.bubble{font-size:14px; line-height:1.45; padding:10px 13px; border-radius:18px; color:var(--ink); background:#EFEDE7; border-bottom-left-radius:5px}
+.row.out .bubble{background:var(--accent); color:#fff; border-bottom-left-radius:18px; border-bottom-right-radius:5px}
+.callcard{border:1px solid var(--hairline-alt); background:#fff; border-radius:16px; padding:12px 14px; display:flex; align-items:center; gap:11px; align-self:stretch}
+.callcard .ring{width:32px; height:32px; border-radius:999px; border:2px solid var(--accent); flex:0 0 auto; position:relative}
+.callcard .ring::after{content:""; position:absolute; inset:-6px; border-radius:999px; border:2px solid var(--accent); opacity:0; animation:ringpulse 1.6s ease-out infinite}
+@keyframes ringpulse{0%{opacity:.55; transform:scale(.8)} 100%{opacity:0; transform:scale(1.25)}}
+.callcard .t{font-size:13.5px; font-weight:600; color:var(--ink); line-height:1.25}
+.callcard .s{font-family:var(--font-mono); font-size:10px; color:var(--gray-soft)}
+.typing{display:inline-flex; gap:4px; padding:12px 14px; background:#EFEDE7; border-radius:18px; border-bottom-left-radius:5px}
+.row.out .typing{background:rgba(88,71,255,.16); border-bottom-left-radius:18px; border-bottom-right-radius:5px}
+.typing i{width:6px; height:6px; border-radius:999px; background:var(--gray); display:block; animation:blink 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.18s} .typing i:nth-child(3){animation-delay:.36s}
+@keyframes blink{0%,60%,100%{opacity:.28} 30%{opacity:.95}}
+.phone-note{font-family:var(--font-mono); font-size:11px; color:var(--gray-soft); margin:14px 0 0; text-align:center}
+.phone-statement{margin:10px 0 0; text-align:center; max-width:34ch}
+.phone-support{font-size:14px; color:var(--gray); margin:8px 0 0; text-align:center; max-width:38ch}
+
+/* ---------- automate ---------- */
+.jump{display:flex; flex-wrap:wrap; gap:10px; margin:26px 0 0; padding:0; list-style:none}
+.pill{
+  display:inline-flex; align-items:center; min-height:44px; padding:10px 16px; border-radius:999px;
+  border:1px solid var(--hairline-alt); background:#fff; color:var(--body);
+  font-size:15px; font-weight:500; transition:border-color .2s, color .2s;
+}
+a.pill:hover{border-color:var(--accent); color:var(--accent)}
+.cats{margin-top:clamp(40px,5vw,56px); display:flex; flex-direction:column; gap:56px}
+.cat h3{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.cat .rule{height:1px; background:var(--hairline); margin:16px 0 26px}
+.items{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:28px 40px}
+.item h4{margin:0 0 7px}
+.item p{margin:0; color:var(--muted)}
+
+/* ---------- industries ---------- */
+.inds{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0; padding:0; list-style:none}
+.pill-open{border-style:dashed; color:var(--gray); background:transparent}
+
+/* ---------- how it works ---------- */
+.accent-rule{height:2px; background:var(--accent); margin:26px 0 0; transform-origin:left center}
+.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:36px 40px; margin-top:clamp(32px,4vw,46px)}
+.step h3{margin:10px 0 8px}
+.step p{margin:0; color:var(--muted)}
+.step .when{display:inline-block; margin-top:12px; font-family:var(--font-mono); font-size:11px; color:var(--gray)}
+
+/* ---------- marquee ---------- */
+.marquee{margin-top:30px; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent); mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.track{display:flex; width:max-content; gap:52px; animation:slide 32s linear infinite}
+.track span{font-family:var(--font-mono); font-size:clamp(18px,2.4vw,26px); font-weight:400; color:var(--on-dark); white-space:nowrap}
+.track span:nth-child(even){color:var(--on-dark-faint)}
+@keyframes slide{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+.sub-ink{color:var(--on-dark-mute); margin:14px 0 0; max-width:56ch}
+
+/* ---------- pricing ---------- */
+.price-label{font-family:var(--font-mono); font-size:13px; font-weight:500; letter-spacing:.04em; text-transform:uppercase; color:var(--gray)}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-top:22px}
+.card{background:#fff; border:1px solid var(--hairline); border-radius:18px; padding:26px; display:flex; flex-direction:column}
+.card.featured{border-color:var(--accent); box-shadow:0 20px 50px -30px rgba(88,71,255,.5)}
+.card .scope{font-size:15px; color:var(--muted); margin:10px 0 0; flex:1 1 auto}
+.card .fig{font-size:clamp(26px,3.4vw,36px); font-weight:500; line-height:1; letter-spacing:-.01em; color:var(--ink); margin:18px 0 0}
+.card .fig-m{font-size:20px; font-weight:500; line-height:1; color:var(--ink); margin:18px 0 0}
+.card .fig span,.card .fig-m span{font-size:15px; color:var(--gray); font-weight:400}
+.card .term{font-family:var(--font-mono); font-size:11px; color:var(--gray); margin:10px 0 0}
+.card .hr{height:1px; background:var(--hairline); margin:18px 0}
+.card ul{margin:0; padding-left:18px; color:var(--muted); font-size:15px}
+.card ul li{margin:0 0 6px}
+.tag{display:inline-block; font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); background:var(--accent-tint); border:1px solid var(--accent-tint-b); border-radius:999px; padding:4px 9px; margin-bottom:12px; align-self:flex-start}
+.rowlabel{margin:clamp(36px,4vw,48px) 0 0}
+.callout{background:var(--accent-tint); border:1px solid var(--accent-tint-b); border-radius:16px; padding:26px; margin-top:26px}
+.callout h3{font-size:19px; margin:0 0 12px}
+.callout ul{margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px 26px; color:var(--body); font-size:15px}
+.callout li::before{content:"\2014  "; color:var(--accent)}
+.footnote{font-family:var(--font-mono); font-size:12px; color:var(--gray); margin:18px 0 0}
+
+/* ---------- faq ---------- */
+.faq-wrap{max-width:820px; margin:0 auto; padding-left:24px; padding-right:24px}
+.acc{margin-top:26px; border-top:1px solid var(--hairline-alt)}
+details{border-bottom:1px solid var(--hairline-alt)}
+summary{display:flex; align-items:flex-start; gap:14px; cursor:pointer; padding:20px 0; list-style:none; min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary h3{font-size:clamp(17px,1.9vw,19px); font-weight:500; line-height:1.35; flex:1 1 auto}
+summary .plus{font-family:var(--font-mono); font-size:20px; color:var(--accent); line-height:1.2; flex:0 0 auto; transition:transform .2s ease}
+details[open] summary .plus{transform:rotate(45deg)}
+details .ans{margin:0; padding:0 0 22px; color:var(--muted); max-width:62ch}
+
+/* ---------- booking / contact ---------- */
+.two{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(32px,4vw,56px); align-items:start}
+.checks{margin:24px 0 0; padding:0; list-style:none}
+.checks li{display:flex; gap:11px; align-items:flex-start; padding:11px 0; border-bottom:1px solid var(--hairline); color:var(--body)}
+.checks li::before{content:"\2014"; color:var(--accent)}
+.embed-shell{background:#fff; border:1px solid var(--hairline); border-radius:18px; padding:10px; min-height:520px}
+#cal-inline{width:100%; min-height:600px; overflow:auto}
+.embed-fallback{padding:40px 20px; text-align:center; color:var(--gray); font-family:var(--font-mono); font-size:13px}
+.formbox{background:#fff; border:1px solid var(--hairline); border-radius:18px; padding:26px}
+.field{margin:0 0 14px}
+.field label{display:block; font-size:14px; font-weight:500; color:var(--ink); margin:0 0 6px}
+.field input,.field textarea{
+  width:100%; font-family:var(--font-sans); font-size:16px; color:var(--body);
+  padding:12px 13px; min-height:46px; border:1px solid var(--hairline-alt); border-radius:10px; background:var(--paper);
+}
+.field textarea{min-height:104px; resize:vertical}
+.field input:focus,.field textarea:focus{outline:2px solid var(--accent); outline-offset:1px; border-color:transparent}
+.hp{position:absolute !important; left:-9999px !important; width:1px !important; height:1px !important; overflow:hidden !important; opacity:0 !important; pointer-events:none !important}
+.formnote{font-size:13px; color:var(--gray); margin:12px 0 0}
+.status{margin:14px 0 0; font-size:15px; color:var(--ink)}
+.thanks{font-size:17px; color:var(--ink); margin:0}
+details.fallback{border:0; margin-top:18px}
+details.fallback>summary{padding:14px 0; border-top:1px solid var(--hairline)}
+details.fallback>summary h3{font-size:16px}
+.chan{margin:24px 0 0; padding:0; list-style:none}
+.chan li{padding:16px 0; border-bottom:1px solid var(--hairline-alt); display:flex; gap:16px; align-items:baseline; flex-wrap:wrap}
+.chan .k{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--gray); min-width:64px}
+.chan .v{font-size:17px; color:var(--ink)}
+.chan a.v{display:inline-flex; align-items:center; min-height:44px; color:var(--accent)}
+
+/* ---------- pdf rail (desktop) ---------- */
+.rail{display:none}
+@media (min-width:1400px){
+  .rail{
+    display:block; position:fixed; top:50%; transform:translateY(-50%);
+    left:max(12px,calc(50% - 560px - 140px)); width:128px; z-index:40;
+    border-left:2px solid var(--accent); padding:4px 0 4px 12px;
+  }
+  .rail p{font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--gray-soft); margin:0 0 10px}
+  .rail a{display:flex; align-items:center; min-height:44px; font-size:13px; line-height:1.3; color:var(--body); padding:6px 0}
+  .rail a:hover{color:var(--accent)}
+}
+
+/* ---------- mobile bottom bar ---------- */
+.bottombar{display:none}
+.sheet{display:none}
+@media (max-width:999px){
+  .bottombar{
+    display:flex; gap:10px; position:fixed; left:0; right:0; bottom:0; z-index:45;
+    padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:rgba(251,250,247,.94);
+    backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid var(--hairline);
+  }
+  body{padding-bottom:76px}
+  .sheet{
+    display:block; position:fixed; left:0; right:0; bottom:calc(68px + env(safe-area-inset-bottom)); z-index:46;
+    background:#fff; border-top:1px solid var(--hairline); padding:16px 18px 18px;
+    box-shadow:0 -18px 40px -28px rgba(17,17,17,.5);
+  }
+  .sheet[hidden]{display:none}
+  .sheet p{font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--gray-soft); margin:0 0 8px}
+  .sheet a{display:block; padding:13px 0; font-size:16px; color:var(--body); border-bottom:1px solid var(--hairline)}
+  .sheet a:last-child{border-bottom:0}
+}
+
+/* ---------- footer ---------- */
+.foot-top{display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:space-between}
+.foot-logo img{height:26px; width:auto}
+.foot-links{display:flex; align-items:center; gap:22px; flex-wrap:wrap}
+.foot-links a{display:inline-flex; align-items:center; min-height:44px; font-size:15px; color:var(--on-dark-mute)}
+.foot-links a:hover{color:var(--on-dark)}
+.foot-links .btn{color:#fff; border-radius:999px}
+.foot-logo{display:inline-flex; align-items:center; min-height:44px}
+.foot-guides{margin:26px 0 0; padding:22px 0 0; border-top:1px solid #262626; display:flex; gap:22px; flex-wrap:wrap; align-items:center}
+.foot-guides span{font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--on-dark-faint)}
+.foot-guides a{display:inline-flex; align-items:center; min-height:44px; font-size:14px; color:var(--on-dark-mute)}
+.foot-bottom{margin-top:22px; padding-top:20px; border-top:1px solid #262626; display:flex; gap:14px; flex-wrap:wrap; justify-content:space-between}
+.foot-bottom p{margin:0; font-size:13px; color:var(--on-dark-faint)}
+.foot-bottom a{color:var(--on-dark-mute)}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0; transform:translateY(18px); transition:opacity .5s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1; transform:none}
+.rvline{transform:scaleX(0); transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.rvline.on{transform:scaleX(1)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+  .rv{opacity:1; transform:none}
+  .rvline{transform:scaleX(1)}
+}
+</style>
+
+<!-- Reveal animations are progressive enhancement only. With JS off, everything
+     is shown immediately so the full page stays readable. -->
+<noscript><style>
+  .rv{opacity:1 !important; transform:none !important}
+  .rvline{transform:scaleX(1) !important}
+</style></noscript>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="hdr-logo" href="#top" aria-label="Glas Automations, back to top">
+      <img src="/assets/glas-lockup-horizontal.png" alt="Glas Automations" width="200" height="28">
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#automate">What I automate</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+      <a href="#contact">Contact me</a>
+    </nav>
+    <a class="btn" href="#book">Book a call</a>
+  </div>
+</header>
+
+<aside class="rail" aria-label="Guides">
+  <p>Guides</p>
+  <a href="/assets/automation-examples.pdf">What can I automate</a>
+  <a href="/assets/pricing.pdf">Pricing</a>
+  <a href="/assets/how-it-works.pdf">How it works</a>
+</aside>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="sec hero">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <p class="eyebrow">Workflow automation for small service businesses</p>
+      <h1>You&rsquo;re losing work you already earned.</h1>
+      <p class="lead">The call you missed. The quote that went quiet. The invoice you sent at 11pm. I build the systems that catch them &mdash; so they run without you.</p>
+      <a class="btn btn-lg" href="#book">Book a 20-minute call</a>
+    </div>
+
+    <div class="phone-col rv">
+      <div class="phone" aria-hidden="true">
+        <div class="phone-screen">
+          <div class="phone-bar">
+            <div class="phone-dot"></div>
+            <div>
+              <div class="phone-who">Dave &mdash; Ridgeline Plumbing</div>
+              <div class="phone-sub">Auto-reply active</div>
+            </div>
+          </div>
+          <div class="thread" id="thread"></div>
+        </div>
+      </div>
+      <p class="phone-note">Example &mdash; not a recording.</p>
+      <p class="h2-statement phone-statement">A missed call sends a text back on its own.</p>
+      <p class="phone-support">The reply fires the moment the call drops, with nobody picking up a phone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT CAN I AUTOMATE ============ -->
+<section class="sec" id="automate">
+  <div class="wrap">
+    <h2 class="rv">What can I automate?</h2>
+    <p class="lead rv" style="margin:18px 0 0; max-width:44em">Read down the list. Anything that makes you wince is something I can take off your plate.</p>
+
+    <ul class="jump rv">
+      <li><a class="pill" href="#g-calls">Missed calls &amp; messages</a></li>
+      <li><a class="pill" href="#g-quotes">Quotes &amp; scheduling</a></li>
+      <li><a class="pill" href="#g-invoices">Invoices &amp; payments</a></li>
+      <li><a class="pill" href="#g-reviews">Reviews &amp; follow-up</a></li>
+      <li><a class="pill" href="#g-admin">Paperwork &amp; admin</a></li>
+    </ul>
+
+    <div class="cats">
+
+      <div class="cat rv" id="g-calls">
+        <h3><span class="ord">01</span> Missed calls &amp; messages</h3>
+        <div class="rule"></div>
+        <div class="items">
+          <article class="item"><h4>Missing calls while your hands are full?</h4><p>Every missed call gets an instant text back, so the customer isn&rsquo;t already dialing the next guy.</p></article>
+          <article class="item"><h4>Customers calling to ask where you are?</h4><p>An &ldquo;on my way&rdquo; text fires when you leave the last job. The phone stops ringing.</p></article>
+          <article class="item"><h4>Answering the same five questions on email and Facebook?</h4><p>Common questions get answered instantly, in your words, on every channel you use.</p></article>
+          <article class="item"><h4>Web form leads sitting until you&rsquo;re off the truck?</h4><p>New leads get a real reply in under a minute, before they&rsquo;ve called anyone else.</p></article>
+        </div>
+      </div>
+
+      <div class="cat rv" id="g-quotes">
+        <h3><span class="ord">02</span> Quotes &amp; scheduling</h3>
+        <div class="rule"></div>
+        <div class="items">
+          <article class="item"><h4>Send a quote and never hear back?</h4><p>Follow-ups go out on their own at day 2, 5, and 10 until you get a yes or a no.</p></article>
+          <article class="item"><h4>Booking jobs by playing phone tag?</h4><p>Customers pick a slot, it lands on your calendar, everyone gets a confirmation.</p></article>
+          <article class="item"><h4>Calling to confirm tomorrow&rsquo;s appointments?</h4><p>Reminders send themselves at 24 hours and again an hour out.</p></article>
+          <article class="item"><h4>No-shows just disappear?</h4><p>A missed appointment triggers a rebooking text the same day, while you&rsquo;re still on their mind.</p></article>
+          <article class="item"><h4>Building tomorrow&rsquo;s schedule by hand every night?</h4><p>New jobs drop onto the schedule as they&rsquo;re booked, and the crew gets the update.</p></article>
+        </div>
+      </div>
+
+      <div class="cat rv" id="g-invoices">
+        <h3><span class="ord">03</span> Invoices &amp; payments</h3>
+        <div class="rule"></div>
+        <div class="items">
+          <article class="item"><h4>Writing invoices at ten at night?</h4><p>The invoice builds and sends itself the moment a job is marked complete.</p></article>
+          <article class="item"><h4>Chasing people for money you already earned?</h4><p>Overdue invoices get polite reminders on a schedule until they pay. You never make the call.</p></article>
+          <article class="item"><h4>Matching payments to invoices by hand?</h4><p>Payments sync and match automatically, so the books stay current without you touching a keyboard.</p></article>
+          <article class="item"><h4>Card declines you find out about a month later?</h4><p>Failed payments retry on their own and flag you the same day if they still don&rsquo;t clear.</p></article>
+        </div>
+      </div>
+
+      <div class="cat rv" id="g-reviews">
+        <h3><span class="ord">04</span> Reviews &amp; follow-up</h3>
+        <div class="rule"></div>
+        <div class="items">
+          <article class="item"><h4>Great work, nothing to show for it on Google?</h4><p>A review request goes out automatically the moment a job is marked complete.</p></article>
+          <article class="item"><h4>Customers from two years ago you&rsquo;ve never called again?</h4><p>Seasonal check-ins and service reminders go out without you remembering to send them.</p></article>
+        </div>
+      </div>
+
+      <div class="cat rv" id="g-admin">
+        <h3><span class="ord">05</span> Paperwork &amp; admin</h3>
+        <div class="rule"></div>
+        <div class="items">
+          <article class="item"><h4>Still shoeboxing receipts until tax season?</h4><p>Snap a photo from the truck. It&rsquo;s read, categorized, tagged to the job, and logged in QuickBooks before you&rsquo;re back in the driver&rsquo;s seat.</p></article>
+          <article class="item"><h4>Job photos stuck on your phone?</h4><p>Photos from the field file themselves into the right job folder the day you take them.</p></article>
+          <article class="item"><h4>Entering the same job into two different systems?</h4><p>Enter it once. Everything downstream updates itself, with nothing retyped.</p></article>
+          <article class="item"><h4>Downloading files from one system just to upload them into another?</h4><p>Files move between your systems on their own, in the background, while you work.</p></article>
+          <article class="item"><h4>Digging through QuickBooks to see how you did?</h4><p>A plain-english summary of the month lands in your inbox on the first.</p></article>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="sec-quiet bg-alt">
+  <div class="wrap rv">
+    <p class="eyebrow">Industries I work with</p>
+    <p class="h2-statement" style="margin:12px 0 0; max-width:32ch">If you take calls, send quotes, and chase invoices, the work is the same underneath.</p>
+    <ul class="inds">
+      <li><span class="pill">HVAC</span></li>
+      <li><span class="pill">Plumbing</span></li>
+      <li><span class="pill">Electrical</span></li>
+      <li><span class="pill">Landscaping</span></li>
+      <li><span class="pill">Real Estate</span></li>
+      <li><span class="pill">Restaurants</span></li>
+      <li><span class="pill">Florists</span></li>
+      <li><span class="pill">Small Shops</span></li>
+      <li><span class="pill pill-open">and more</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="sec" id="how">
+  <div class="wrap">
+    <h2 class="rv">How it works</h2>
+    <div class="accent-rule rvline"></div>
+    <div class="steps">
+      <div class="step rv"><span class="ord">01</span><h3 class="h3-sm">We talk</h3><p>Thirty minutes on the phone. You tell me what you&rsquo;re doing by hand that a computer should be doing. Nothing to prepare, no slides.</p><span class="when">Free &middot; 30 min</span></div>
+      <div class="step rv"><span class="ord">02</span><h3 class="h3-sm">You get one number</h3><p>A written proposal with a fixed price, exactly what it does, and when it&rsquo;s done. Not a range, not an estimate. One number.</p><span class="when">Within 3 days</span></div>
+      <div class="step rv"><span class="ord">03</span><h3 class="h3-sm">I build and test it</h3><p>I build it, run it against real jobs to make sure it behaves, then walk you through it so you can see it work.</p><span class="when">1&ndash;8 weeks, by size</span></div>
+      <div class="step rv"><span class="ord">04</span><h3 class="h3-sm">It runs</h3><p>Live, hosted, watched, and maintained. Nothing to install, nothing for you to keep an eye on.</p><span class="when">Monthly plan starts at go-live</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLS MARQUEE ============ -->
+<section class="sec-quiet bg-ink">
+  <div class="wrap rv">
+    <p class="eyebrow">What it runs behind</p>
+    <p class="h2-statement" style="margin:12px 0 0">I connect to your tools. I don&rsquo;t replace them.</p>
+    <p class="sub-ink">QuickBooks, Jobber, Housecall Pro &mdash; those stay on your accounts, in your name.</p>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>QuickBooks</span><span>Jobber</span><span>Housecall Pro</span><span>ServiceTitan</span><span>Twilio</span><span>Google Calendar</span><span>Gmail</span><span>Stripe</span><span>QuickBooks</span><span>Jobber</span><span>Housecall Pro</span><span>ServiceTitan</span><span>Twilio</span><span>Google Calendar</span><span>Gmail</span><span>Stripe</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <h2 class="rv">Two numbers, that&rsquo;s it.</h2>
+    <p class="lead rv" style="margin:18px 0 0; max-width:46em">A one-time build fee to make the thing, and a monthly plan to keep it running. The monthly plan starts the day it goes live &mdash; you&rsquo;re not paying monthly while I&rsquo;m still building it.</p>
+
+    <p class="price-label rowlabel rv">One-time build</p>
+    <div class="cards">
+      <div class="card rv">
+        <span class="price-label">Simple</span>
+        <p class="scope">Missed-call text-back, review requests, appointment reminders.</p>
+        <p class="fig">$750&ndash;1,500</p>
+        <p class="term">1&ndash;2 weeks</p>
+      </div>
+      <div class="card rv">
+        <span class="price-label">Medium</span>
+        <p class="scope">Web form to CRM with follow-up sequences, invoicing on job completion, receipt capture.</p>
+        <p class="fig">$1,500&ndash;3,500</p>
+        <p class="term">2&ndash;4 weeks</p>
+      </div>
+      <div class="card rv">
+        <span class="price-label">Complex</span>
+        <p class="scope">End-to-end lead pipeline, multiple systems talking to each other, custom builds across the office.</p>
+        <p class="fig">$3,500&ndash;7,500+</p>
+        <p class="term">4&ndash;8 weeks</p>
+      </div>
+    </div>
+
+    <p class="price-label rowlabel rv">Monthly plan &mdash; starts at go-live</p>
+    <div class="cards">
+      <div class="card rv">
+        <span class="price-label">Basic</span>
+        <p class="fig-m">$225&ndash;375<span>/mo</span></p>
+        <div class="hr"></div>
+        <ul>
+          <li>Up to 2 active workflows</li>
+          <li>500 texts a month included</li>
+          <li>Repairs and changes as needed</li>
+        </ul>
+      </div>
+      <div class="card featured rv">
+        <span class="tag">Most common</span>
+        <span class="price-label">Standard</span>
+        <p class="fig-m">$400&ndash;700<span>/mo</span></p>
+        <div class="hr"></div>
+        <ul>
+          <li>Up to 5 active workflows</li>
+          <li>1,500 texts a month included</li>
+          <li>Repairs and changes as needed</li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <span class="price-label">Priority</span>
+        <p class="fig-m">$750&ndash;1,400<span>/mo</span></p>
+        <div class="hr"></div>
+        <ul>
+          <li>Up to 10 active workflows</li>
+          <li>4,000 texts a month included</li>
+          <li>Front-of-line response</li>
+          <li>25&#37; off any future build</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout rv">
+      <h3>Included on every monthly plan</h3>
+      <ul>
+        <li>Hosting on my infrastructure</li>
+        <li>Monitoring, around the clock</li>
+        <li>Backups</li>
+        <li>Repairs when something breaks</li>
+        <li>Updates when a vendor changes something</li>
+        <li>Credential storage and security</li>
+        <li>A direct line to me, not a ticket queue</li>
+        <li>No setup or onboarding fee</li>
+      </ul>
+    </div>
+    <p class="footnote rv">Every proposal names one fixed number, not a range.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec bg-alt" id="faq">
+  <div class="faq-wrap">
+    <h2 class="rv">Straight answers.</h2>
+    <div class="acc rv">
+      <details>
+        <summary><h3>Do I have to buy new software?</h3><span class="plus">+</span></summary>
+        <p class="ans">No. You keep QuickBooks, Jobber, Housecall Pro, whatever you already pay for &mdash; in your name, on your accounts. I connect to what&rsquo;s already there.</p>
+      </details>
+      <details>
+        <summary><h3>Do I have to learn anything?</h3><span class="plus">+</span></summary>
+        <p class="ans">No. It runs behind the tools you already use. If it&rsquo;s working, you shouldn&rsquo;t notice it at all &mdash; that&rsquo;s the whole point.</p>
+      </details>
+      <details>
+        <summary><h3>What happens when it breaks at six in the morning?</h3><span class="plus">+</span></summary>
+        <p class="ans">It&rsquo;s monitored around the clock. I usually know before you do, and fixing it is included in your monthly plan, not billed as an extra.</p>
+      </details>
+      <details>
+        <summary><h3>How do I know it&rsquo;s actually working?</h3><span class="plus">+</span></summary>
+        <p class="ans">Every workflow is monitored, and you get a plain-english summary of what ran and what it caught. If something stops, I hear about it, not you.</p>
+      </details>
+      <details>
+        <summary><h3>Can I start with just one thing?</h3><span class="plus">+</span></summary>
+        <p class="ans">You should. Pick the one that annoys you most, let it run for a month, and add more once you trust it. Most people do it that way.</p>
+      </details>
+      <details>
+        <summary><h3>Why is there a monthly plan at all?</h3><span class="plus">+</span></summary>
+        <p class="ans">Because software nobody watches quietly stops working. The monthly plan is hosting, monitoring, and repairs &mdash; it&rsquo;s what keeps the thing alive after launch.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING ============ -->
+<section class="sec" id="book">
+  <div class="wrap two">
+    <div class="rv">
+      <h2>Twenty minutes, and you&rsquo;ll know.</h2>
+      <p class="lead" style="margin:18px 0 0">You tell me what&rsquo;s eating your week. I tell you whether it&rsquo;s worth fixing. If it isn&rsquo;t, I&rsquo;ll say so.</p>
+      <ul class="checks">
+        <li>Nothing to prepare</li>
+        <li>No slides, no pitch deck</li>
+        <li>A fixed price within three days</li>
+      </ul>
+
+      <details class="fallback">
+        <summary><h3>Rather not book right now? Send me a note instead</h3><span class="plus">+</span></summary>
+        <form class="formbox" id="book-form" style="margin-top:14px" novalidate>
+          <div class="field">
+            <label for="b-name">Your name</label>
+            <input id="b-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="b-phone">Phone</label>
+            <input id="b-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="b-email">Email</label>
+            <input id="b-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="b-msg">What&rsquo;s eating your week?</label>
+            <textarea id="b-msg" name="message" required></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="b-website">Leave this field empty</label>
+            <input id="b-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="btn btn-lg" type="submit" style="width:100%">Send it</button>
+          <p class="formnote">Goes straight to me. No list, no newsletter.</p>
+          <p class="status" role="status" aria-live="polite"></p>
+        </form>
+      </details>
+    </div>
+
+    <div class="rv">
+      <div class="embed-shell">
+        <div id="cal-inline"><p class="embed-fallback">Loading the calendar&hellip;</p></div>
+      </div>
+      <p class="formnote">Calendar not loading? Text <a href="tel:+17324700535">732-470-0535</a> or email <a href="mailto:lir@glasautomations.com">lir@glasautomations.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec bg-alt" id="contact">
+  <div class="wrap two">
+    <div class="rv">
+      <h2>Contact me</h2>
+      <p class="lead" style="margin:18px 0 0">Call it, text it, or write it down. Whatever&rsquo;s easiest.</p>
+      <ul class="chan">
+        <li><span class="k">Text or call</span><a class="v" href="tel:+17324700535">732-470-0535</a></li>
+        <li><span class="k">Email</span><a class="v" href="mailto:lir@glasautomations.com">lir@glasautomations.com</a></li>
+        <li><span class="k">Hours</span><span class="v">I answer when I&rsquo;m not on a build. Evenings are fine.</span></li>
+      </ul>
+    </div>
+
+    <div class="rv">
+      <form class="formbox" id="contact-form" novalidate>
+        <div class="field">
+          <label for="c-name">Your name</label>
+          <input id="c-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="c-reach">Phone or email</label>
+          <input id="c-reach" name="reach" type="text" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="c-msg">What&rsquo;s broken?</label>
+          <textarea id="c-msg" name="message" required></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="c-website">Leave this field empty</label>
+          <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn btn-lg" type="submit" style="width:100%">Send</button>
+          <p class="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="sec-quiet bg-ink">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="foot-logo" href="#top" aria-label="Glas Automations, back to top">
+        <img src="/assets/glas-lockup-horizontal-white.png" alt="Glas Automations" width="200" height="26">
+      </a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#automate">What I automate</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact me</a>
+        <a class="btn" href="#book">Book a call</a>
+      </nav>
+    </div>
+
+    <div class="foot-guides">
+      <span>Guides</span>
+      <a href="/assets/automation-examples.pdf">What can I automate</a>
+      <a href="/assets/pricing.pdf">Pricing</a>
+      <a href="/assets/how-it-works.pdf">How it works</a>
+    </div>
+
+    <div class="foot-bottom">
+      <p>Built and run by Lir Glas. One person, not a team.</p>
+      <p>
+        <a href="mailto:lir@glasautomations.com">lir@glasautomations.com</a> &middot;
+        <a href="tel:+17324700535">732-470-0535</a> &middot;
+        &copy; 2026 Glas Automations
+      </p>
+      <!-- CAN-SPAM: physical mailing address goes here once registered.
+           <p>Glas Automations, [street], [city], NJ [zip]</p> -->
+    </div>
+  </div>
+</footer>
+
+<div class="sheet" id="sheet" hidden>
+  <p>Guides</p>
+  <a href="/assets/automation-examples.pdf">What can I automate</a>
+  <a href="/assets/pricing.pdf">Pricing</a>
+  <a href="/assets/how-it-works.pdf">How it works</a>
+</div>
+<div class="bottombar">
+  <a class="btn" href="#book" style="flex:2 1 auto">Book a call</a>
+  <button class="btn btn-ghost" id="guides-btn" type="button" aria-expanded="false" aria-controls="sheet" style="flex:1 1 auto">Guides</button>
+</div>
+
+<script>
+/* ============================================================
+   THE ONLY PLACEHOLDER IN THIS FILE.
+   Replace with the n8n production webhook URL. Both forms POST
+   JSON here. Until it is replaced, a submit shows the mailto /
+   text fallback rather than leaving a dead button.
+   ============================================================ */
+var N8N_WEBHOOK_URL = "N8N_WEBHOOK_URL_PLACEHOLDER";
+
+var EMAIL = "lir@glasautomations.com";
+var TEL = "+17324700535";
+var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ---------- scroll reveal ---------- */
+(function () {
+  var els = document.querySelectorAll(".rv, .rvline");
+  if (reduce || !("IntersectionObserver" in window)) {
+    for (var i = 0; i < els.length; i++) els[i].classList.add("on");
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  for (var j = 0; j < els.length; j++) io.observe(els[j]);
+
+  // Safety net: if the observer never fires (background tab, odd embedding,
+  // extension interference), reveal everything rather than leave a blank page.
+  setTimeout(function () {
+    for (var k = 0; k < els.length; k++) els[k].classList.add("on");
+  }, 2500);
+})();
+
+/* ---------- phone thread ---------- */
+(function () {
+  var thread = document.getElementById("thread");
+  if (!thread) return;
+
+  var SCRIPT = [
+    { side: "out", time: "6:42 PM · sent automatically", text: "Hi — this is Dave at Ridgeline Plumbing. Sorry I missed you, I’m on a job. What do you need?" },
+    { side: "in",  time: "6:42 PM", text: "Water heater’s leaking all over the garage floor." },
+    { side: "out", time: "6:43 PM", text: "Got it. Shut the valve on top of the tank if you can reach it. I can be there at 8 tomorrow." },
+    { side: "in",  time: "6:44 PM", text: "Found it, it’s off. 8 works." },
+    { side: "out", time: "6:44 PM", text: "See you at 8." }
+  ];
+
+  function el(tag, cls, txt) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (txt != null) n.textContent = txt;
+    return n;
+  }
+  function toBottom() { thread.scrollTop = thread.scrollHeight; }
+
+  function renderCall() {
+    var card = el("div", "callcard");
+    card.appendChild(el("div", "ring"));
+    var box = el("div");
+    box.appendChild(el("div", "t", "Missed call"));
+    box.appendChild(el("div", "s", "6:42 PM · Unknown number"));
+    card.appendChild(box);
+    thread.appendChild(card);
+    toBottom();
+  }
+  function renderMsg(m) {
+    var row = el("div", "row " + m.side);
+    row.appendChild(el("div", "meta", m.time));
+    row.appendChild(el("div", "bubble", m.text));
+    thread.appendChild(row);
+    toBottom();
+  }
+  function renderTyping(side) {
+    var row = el("div", "row " + side);
+    var t = el("div", "typing");
+    t.appendChild(el("i")); t.appendChild(el("i")); t.appendChild(el("i"));
+    row.appendChild(t);
+    thread.appendChild(row);
+    toBottom();
+    return row;
+  }
+  function renderDelivered() {
+    var d = el("div", "meta", "Delivered");
+    d.style.alignSelf = "flex-end";
+    thread.appendChild(d);
+    toBottom();
+  }
+  function renderAll() {
+    thread.textContent = "";
+    renderCall();
+    for (var i = 0; i < SCRIPT.length; i++) renderMsg(SCRIPT[i]);
+    renderDelivered();
+  }
+
+  if (reduce) { renderAll(); return; }
+
+  var timers = [];
+  function wait(ms) { return new Promise(function (res) { timers.push(setTimeout(res, ms)); }); }
+
+  function run() {
+    for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
+    timers = [];
+    thread.textContent = "";
+    var chain = wait(500).then(function () { renderCall(); return wait(1400); });
+    SCRIPT.forEach(function (m) {
+      chain = chain.then(function () {
+        var t = renderTyping(m.side);
+        return wait(850).then(function () {
+          if (t.parentNode) t.parentNode.removeChild(t);
+          renderMsg(m);
+          return wait(1050);
+        });
+      });
+    });
+    chain.then(function () { renderDelivered(); return wait(4800); }).then(run);
+  }
+  run();
+})();
+
+/* ---------- Cal.com inline embed ---------- */
+(function (C, A, L) {
+  var p = function (a, ar) { a.q.push(ar); };
+  var d = C.document;
+  C.Cal = C.Cal || function () {
+    var cal = C.Cal, ar = arguments;
+    if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+    if (ar[0] === L) {
+      var api = function () { p(api, arguments); };
+      var namespace = ar[1];
+      api.q = api.q || [];
+      if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+      else { p(cal, ar); }
+      return;
+    }
+    p(cal, ar);
+  };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", "discovery", { origin: "https://app.cal.com" });
+Cal.ns.discovery("inline", {
+  elementOrSelector: "#cal-inline",
+  config: { layout: "month_view" },
+  calLink: "glasautomations/discovery"
+});
+Cal.ns.discovery("ui", { hideEventTypeDetails: false, layout: "month_view" });
+
+/* ---------- forms ---------- */
+(function () {
+  var cfgs = [
+    { id: "book-form", source: "booking-fallback" },
+    { id: "contact-form", source: "contact" }
+  ];
+
+  function val(form, name) {
+    var f = form.querySelector('[name="' + name + '"]');
+    return f ? f.value.trim() : "";
+  }
+
+  cfgs.forEach(function (cfg) {
+    var form = document.getElementById(cfg.id);
+    if (!form) return;
+    var status = form.querySelector(".status");
+
+    function confirmSent() {
+      var p = document.createElement("p");
+      p.className = "thanks";
+      p.innerHTML = "Got it &mdash; I&rsquo;ll get back to you shortly. If it&rsquo;s urgent, text <a href=\"tel:" + TEL + "\">732-470-0535</a>.";
+      form.parentNode.replaceChild(p, form);
+    }
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+
+      var hp = form.querySelector('input[name="website"]');
+      if (hp && hp.value.trim() !== "") { confirmSent(); return; }
+
+      var required = form.querySelectorAll("[required]");
+      for (var i = 0; i < required.length; i++) {
+        if (!required[i].value.trim()) {
+          status.textContent = "Fill in the required fields and try again.";
+          required[i].focus();
+          return;
+        }
+      }
+
+      // A malformed address breaks the reply path, so catch it here rather
+      // than letting the visitor think it went through.
+      var RE_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var emailField = form.querySelector('input[type="email"]');
+      if (emailField && emailField.value.trim() && !RE_EMAIL.test(emailField.value.trim())) {
+        status.textContent = "That email address doesn't look right — mind checking it?";
+        emailField.focus();
+        return;
+      }
+      var reachField = form.querySelector('[name="reach"]');
+      if (reachField) {
+        var v = reachField.value.trim();
+        var digits = v.replace(/[^0-9]/g, "").length;
+        if (v.indexOf("@") > -1 ? !RE_EMAIL.test(v) : digits < 10) {
+          status.textContent = "Leave a full phone number or an email address so I can reply.";
+          reachField.focus();
+          return;
+        }
+      }
+
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      status.textContent = "";
+
+      fetch(N8N_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: val(form, "name"),
+          phone: val(form, "phone"),
+          email: val(form, "email"),
+          reach: val(form, "reach"),
+          message: val(form, "message"),
+          source: cfg.source,
+          page: "glasautomations.com",
+          submittedAt: new Date().toISOString()
+        })
+      })
+      .then(function (res) { if (!res.ok) { throw new Error("HTTP " + res.status); } confirmSent(); })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = label;
+        status.innerHTML = "That didn&rsquo;t go through. Email me at <a href=\"mailto:" + EMAIL + "\">" + EMAIL + "</a> or text <a href=\"tel:" + TEL + "\">732-470-0535</a> and I&rsquo;ll pick it up.";
+      });
+    });
+  });
+})();
+
+/* ---------- mobile guides sheet ---------- */
+(function () {
+  var btn = document.getElementById("guides-btn");
+  var sheet = document.getElementById("sheet");
+  if (!btn || !sheet) return;
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    if (sheet.hasAttribute("hidden")) { sheet.removeAttribute("hidden"); btn.setAttribute("aria-expanded", "true"); }
+    else { sheet.setAttribute("hidden", ""); btn.setAttribute("aria-expanded", "false"); }
+  });
+  document.addEventListener("click", function (e) {
+    if (!sheet.hasAttribute("hidden") && !sheet.contains(e.target) && e.target !== btn) {
+      sheet.setAttribute("hidden", ""); btn.setAttribute("aria-expanded", "false");
+    }
+  });
+})();
+</script>
+</body>
+</html>

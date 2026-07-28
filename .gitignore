@@ -1,0 +1,11 @@
+# Local tooling
+.claude/
+.wrangler/
+node_modules/
+
+# Build/deploy scratch
+*.zip
+
+# OS noise
+Thumbs.db
+.DS_Store
