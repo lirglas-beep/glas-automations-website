@@ -1,0 +1,388 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glas Automations — You're losing work you already earned.</title>
+<meta name="description" content="I build the systems that catch the call you missed, the quote that went quiet, the invoice you sent at 11pm — so they run without you." />
+<link rel="icon" href="assets/glas-lockup-horizontal.png" />
+
+<style>
+  /* ---- Fonts: Sora via @fontsource (the one permitted external dependency) ---- */
+  @font-face{font-family:'Sora';font-style:normal;font-weight:400;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/sora@5/files/sora-latin-400-normal.woff2') format('woff2');}
+  @font-face{font-family:'Sora';font-style:normal;font-weight:500;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/sora@5/files/sora-latin-500-normal.woff2') format('woff2');}
+  @font-face{font-family:'Sora';font-style:normal;font-weight:600;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/sora@5/files/sora-latin-600-normal.woff2') format('woff2');}
+  @font-face{font-family:'Sora';font-style:normal;font-weight:700;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/sora@5/files/sora-latin-700-normal.woff2') format('woff2');}
+  @font-face{font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url('https://cdn.jsdelivr.net/npm/@fontsource/sora@5/files/sora-latin-800-normal.woff2') format('woff2');}
+
+  /* ---- Brand tokens (from the one-pager PDFs) ---- */
+  :root{
+    --paper:#FBFAF7;
+    --ink:#111111;
+    --violet:#5847FF;
+    --violet-dark:#4636E0;
+    --muted:#6E6A63;
+    --body:#26241F;      /* slightly warmer than pure ink for long reading */
+    --hair:#E7E3DB;      /* warm hairline rules */
+    --field-border:#D9D4CB;
+    --wrap:1060px;
+    --narrow:660px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--body);
+    font-family:'Sora',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+
+  .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 20px;}
+  .narrow{max-width:var(--narrow);}
+
+  /* ---- Buttons ---- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;line-height:1;
+    text-decoration:none;border:none;border-radius:10px;cursor:pointer;
+    min-height:48px;padding:0 1.4rem;
+    transition:background-color .15s ease, transform .05s ease;
+  }
+  .btn-primary{background:var(--violet);color:#fff;}
+  .btn-primary:hover{background:var(--violet-dark);}
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-primary:focus-visible{outline:3px solid rgba(88,71,255,.4);outline-offset:2px;}
+  .btn-lg{min-height:54px;font-size:1.06rem;padding:0 1.9rem;}
+  .btn-header{min-height:44px;font-size:.95rem;padding:0 1.15rem;white-space:nowrap;}
+
+  /* ---- Header ---- */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,247,.9);
+    backdrop-filter:saturate(180%) blur(8px);
+    -webkit-backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--hair);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;max-width:var(--wrap);margin:0 auto;}
+  .logo{display:inline-flex;align-items:center;flex-shrink:1;min-width:0;min-height:44px;}
+  .logo img{height:28px;width:auto;}
+
+  /* ---- Eyebrow + section heads ---- */
+  .eyebrow{
+    margin:0 0 .8rem;color:var(--violet);
+    font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .section-head{
+    display:flex;align-items:center;gap:.6rem;margin:0 0 1.6rem;
+    color:var(--ink);font-weight:700;letter-spacing:-.01em;line-height:1.15;
+    font-size:clamp(1.4rem,4.4vw,1.8rem);
+  }
+  .section-head .sq{width:.7em;height:.7em;background:var(--violet);border-radius:2px;flex:none;}
+  .section-head-plain{
+    margin:0 0 1.4rem;color:var(--ink);font-weight:700;letter-spacing:-.01em;
+    line-height:1.2;font-size:clamp(1.4rem,4.4vw,1.8rem);
+  }
+
+  /* ---- Hero ---- */
+  .hero{padding:56px 0 44px;}
+  .hero h1{
+    margin:0 0 1.1rem;color:var(--ink);
+    font-weight:800;letter-spacing:-.025em;line-height:1.04;
+    font-size:clamp(2.35rem,8.5vw,4.15rem);max-width:15ch;
+  }
+  .subhead{
+    margin:0 0 1.9rem;color:var(--muted);max-width:44ch;
+    font-size:clamp(1.08rem,2.7vw,1.32rem);line-height:1.55;
+  }
+
+  /* ---- Scenarios ---- */
+  .scenarios{padding:40px 0;border-top:1px solid var(--hair);}
+  .group-label{
+    margin:2.4rem 0 1rem;color:var(--muted);
+    font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  }
+  .group-label:first-of-type{margin-top:0;}
+  .scenario{max-width:60ch;margin:0 0 1.7rem;}
+  .scenario p{
+    margin:0;color:var(--body);
+    font-size:clamp(1.1rem,2.6vw,1.28rem);line-height:1.6;
+  }
+  .rest{
+    max-width:62ch;margin:2.8rem 0 0;padding-top:1.8rem;border-top:1px solid var(--hair);
+    color:var(--muted);font-size:1.05rem;line-height:1.6;
+  }
+  .doclinks{margin-top:.9rem;}
+  .doclink{
+    display:flex;align-items:center;min-height:44px;
+    color:var(--ink);text-decoration:none;font-weight:600;white-space:nowrap;
+  }
+  /* Underline hugs the text, not the 44px tap row */
+  .doclink .lbl{
+    border-bottom:1.5px solid var(--field-border);padding-bottom:1px;
+    transition:color .15s ease,border-color .15s ease;
+  }
+  .doclink:hover{color:var(--violet);}
+  .doclink:hover .lbl{border-color:var(--violet);}
+  .doclink .arw{color:var(--violet);margin-left:.4rem;}
+
+  @media (min-width:720px){
+    /* Roomier screens: sit them on one line as inline text links */
+    .doclinks{display:flex;flex-wrap:wrap;gap:0 1.9rem;}
+  }
+
+  /* ---- Book / Cal embed ---- */
+  .book{padding:52px 0;border-top:1px solid var(--hair);}
+  .cal-frame{
+    width:100%;min-height:640px;overflow:auto;
+    background:#fff;border:1px solid var(--hair);border-radius:14px;
+    margin-top:1.4rem;
+  }
+
+  /* ---- Fallback form ---- */
+  .fallback{padding:52px 0 8px;border-top:1px solid var(--hair);}
+  .form-intro{margin:0 0 1.8rem;color:var(--muted);max-width:52ch;font-size:1.05rem;}
+  .field{margin-bottom:1.1rem;}
+  .field label{display:block;margin-bottom:.4rem;color:var(--ink);font-size:.85rem;font-weight:600;}
+  .field input,.field textarea{
+    width:100%;font-family:inherit;font-size:16px;color:var(--ink);
+    background:#fff;border:1px solid var(--field-border);border-radius:9px;
+    padding:.8rem .9rem;min-height:48px;line-height:1.4;
+  }
+  .field textarea{min-height:128px;resize:vertical;}
+  .field input:focus,.field textarea:focus{
+    outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(88,71,255,.16);
+  }
+  .btn-submit{width:100%;margin-top:.4rem;}
+  /* Honeypot: real text field, hidden with CSS (not type=hidden) */
+  .hp{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;}
+  .form-result{margin:.5rem 0;color:var(--ink);font-size:1.18rem;font-weight:600;line-height:1.5;}
+  .form-error{margin:1.1rem 0 0;color:var(--ink);font-size:1rem;}
+  .form-error a{color:var(--violet);font-weight:600;}
+
+  /* ---- Footer ---- */
+  .site-footer{margin-top:48px;border-top:1px solid var(--hair);}
+  .footer-inner{
+    display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;justify-content:space-between;
+    padding:26px 20px;max-width:var(--wrap);margin:0 auto;color:var(--muted);font-size:.92rem;
+  }
+  .footer-inner a{color:var(--ink);text-decoration:none;font-weight:600;}
+  .footer-inner a:hover{color:var(--violet);}
+
+  /* ---- Larger screens ---- */
+  @media (min-width:720px){
+    .wrap{padding:0 40px;}
+    .header-inner{padding:16px 40px;}
+    .logo img{height:32px;}
+    .hero{padding:88px 0 64px;}
+    .scenarios{padding:64px 0;}
+    .book{padding:80px 0;}
+    .fallback{padding:80px 0 8px;}
+    .footer-inner{padding:32px 40px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .btn{transition:none;}
+  }
+
+  /* Offset sticky-header when jumping to anchors */
+  #book,#contact{scroll-margin-top:84px;}
+</style>
+
+<header class="site-header" id="top">
+  <div class="header-inner">
+    <a href="#top" class="logo" aria-label="Glas Automations — back to top">
+      <img src="assets/glas-lockup-horizontal.png" alt="Glas Automations" width="1560" height="220" />
+    </a>
+    <a href="#book" class="btn btn-primary btn-header">Book a call</a>
+  </div>
+</header>
+
+<main>
+  <!-- 1. Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>You&rsquo;re losing work you already earned.</h1>
+      <p class="subhead">The call you missed. The quote that went quiet. The invoice you sent at 11pm. I build the systems that catch them &mdash; so they run without you.</p>
+      <a href="#book" class="btn btn-primary btn-lg">Book a 20-minute call</a>
+    </div>
+  </section>
+
+  <!-- 2. What that looks like -->
+  <section class="scenarios">
+    <div class="wrap">
+      <h2 class="section-head"><span class="sq" aria-hidden="true"></span>What that looks like</h2>
+
+      <p class="group-label">Before the job</p>
+      <div class="scenario">
+        <p>A call comes in while you&rsquo;re on a job. He gets a text back in 30 seconds &mdash; instead of calling the next guy on the list.</p>
+      </div>
+      <div class="scenario">
+        <p>A quote goes out and goes quiet. It follows up on its own. Three times. Without you remembering to.</p>
+      </div>
+
+      <p class="group-label">After the job</p>
+      <div class="scenario">
+        <p>The job wraps and the invoice goes out that afternoon &mdash; not Sunday night at the kitchen table.</p>
+      </div>
+      <div class="scenario">
+        <p>Receipts stop living in the truck console. They get captured, coded, and in the books before you forget what they were for.</p>
+      </div>
+
+      <!-- 4. Three PDF links, as text links -->
+      <div class="rest">
+        <p style="margin:0">That&rsquo;s four of about two dozen. The rest are here:</p>
+        <div class="doclinks">
+          <a class="doclink" href="assets/automation-examples.pdf" target="_blank" rel="noopener"><span class="lbl">What Can I Automate</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+          <a class="doclink" href="assets/pricing.pdf" target="_blank" rel="noopener"><span class="lbl">Pricing</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+          <a class="doclink" href="assets/how-it-works.pdf" target="_blank" rel="noopener"><span class="lbl">How It Works</span><span class="arw" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Cal.com inline embed -->
+  <section class="book" id="book">
+    <div class="wrap">
+      <p class="eyebrow">Book a call</p>
+      <h2 class="section-head-plain">Book a 20-minute call</h2>
+      <!-- Cal inline embed -->
+      <div class="cal-frame" id="my-cal-inline"></div>
+    </div>
+  </section>
+
+  <!-- 6. Fallback form -->
+  <section class="fallback" id="contact">
+    <div class="wrap narrow">
+      <h2 class="section-head-plain">Not ready to book? Tell me what&rsquo;s broken.</h2>
+      <div id="formWrap">
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+          </div>
+          <div class="field">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="f-message">What&rsquo;s broken?</label>
+            <textarea id="f-message" name="message" required></textarea>
+          </div>
+
+          <!-- Honeypot: named "website", CSS-hidden (not type=hidden). Bots fill it; humans never see it. -->
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">Send</button>
+        </form>
+        <p class="form-error" id="formError" hidden>
+          Something went wrong sending that. Email me directly at
+          <a href="mailto:lir@glasautomations.com">lir@glasautomations.com</a> and I&rsquo;ll get right back to you.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 7. Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="mailto:lir@glasautomations.com">lir@glasautomations.com</a>
+    <span>&copy; 2026 Glas Automations</span>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     WEBHOOK — the fallback form POSTs JSON to this endpoint.
+     n8n workflow: "Glas Automations - Website Contact Form"
+     If this is ever blank or unreachable, the form automatically
+     falls back to the mailto link instead of failing silently.
+     ============================================================ */
+  const WEBHOOK_URL = "https://lirglas.app.n8n.cloud/webhook/glas-site-contact";
+
+  (function () {
+    const form = document.getElementById("contactForm");
+    const formWrap = document.getElementById("formWrap");
+    const errorEl = document.getElementById("formError");
+    const submitBtn = document.getElementById("submitBtn");
+    const val = (id) => (document.getElementById(id).value || "").trim();
+
+    function showThankYou() {
+      formWrap.innerHTML =
+        '<p class="form-result">Got it &mdash; I&rsquo;ll take a look and get back to you shortly. Thanks for reaching out.</p>';
+    }
+    function showError() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send";
+      errorEl.hidden = false;
+    }
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      errorEl.hidden = true;
+
+      // Honeypot tripped → treat as bot, show success without sending.
+      if (val("f-website") !== "") { showThankYou(); return; }
+
+      const payload = {
+        name: val("f-name"),
+        email: val("f-email"),
+        phone: val("f-phone"),
+        company: val("f-company"),
+        message: val("f-message"),
+        source: "glasautomations.com",
+        submittedAt: new Date().toISOString(),
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+
+      try {
+        if (!WEBHOOK_URL || WEBHOOK_URL.indexOf("PASTE_") === 0) {
+          throw new Error("Webhook not configured");
+        }
+        const res = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error("Bad response " + res.status);
+        showThankYou();
+      } catch (err) {
+        showError();
+      }
+    });
+  })();
+</script>
+
+<!-- Cal.com inline embed (official, react-free) -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "discovery", { origin: "https://cal.com" });
+  Cal.ns.discovery("inline", {
+    elementOrSelector: "#my-cal-inline",
+    config: { layout: "month_view" },
+    calLink: "glasautomations/discovery",
+  });
+  Cal.ns.discovery("ui", {
+    hideEventTypeDetails: false,
+    layout: "month_view",
+    cssVarsPerTheme: { light: { "cal-brand": "#5847FF" }, dark: { "cal-brand": "#5847FF" } },
+  });
+</script>
