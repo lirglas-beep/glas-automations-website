@@ -785,8 +785,12 @@ details.fallback>summary h3{font-size:16px}
    If the workflow is ever deactivated or the path changes, the
    POST fails and the forms fall back to showing the mailto /
    text links rather than leaving a dead button.
+
+   NOTE: this is /webhook/<path> with no UUID segment. n8n's API
+   reports a UUID-prefixed production URL that returns 404 —
+   verified, do not "correct" this back to the longer form.
    ============================================================ */
-var N8N_WEBHOOK_URL = "https://lirglas.app.n8n.cloud/webhook/3294b235-b9dc-48fa-8c8d-9b2a3cae60c3/glas-site-contact";
+var N8N_WEBHOOK_URL = "https://lirglas.app.n8n.cloud/webhook/glas-site-contact";
 
 var EMAIL = "lir@glasautomations.com";
 var TEL = "+17324700535";
