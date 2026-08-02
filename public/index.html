@@ -312,16 +312,23 @@ details.fallback>summary h3{font-size:16px}
 
   .sheet{
     display:block; position:fixed; left:0; right:0; bottom:calc(68px + env(safe-area-inset-bottom)); z-index:46;
-    background:#fff; border-top:1px solid var(--hairline); padding:16px 18px 18px;
+    background:#fff; border-top:1px solid var(--hairline); padding:6px 18px 10px;
     box-shadow:0 -18px 40px -28px rgba(17,17,17,.5);
     max-height:calc(100vh - 150px); overflow-y:auto; -webkit-overflow-scrolling:touch;
   }
   .sheet[hidden]{display:none}
-  .sheet p{font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--gray-soft); margin:0 0 8px}
-  .sheet a{display:block; padding:13px 0; font-size:16px; color:var(--body); border-bottom:1px solid var(--hairline)}
-  .sheet a:last-child{border-bottom:0}
-  /* second group heading: the link above it already draws the divider */
-  .sheet a + p{margin-top:18px}
+  /* One row per topic. A guide is the takeaway version of a section, not a
+     separate destination, so the PDF rides on its section's row instead of
+     repeating the same three topics under a second heading. */
+  .sheet-row{display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--hairline)}
+  .sheet-row:last-child{border-bottom:0}
+  .sheet-jump{flex:1 1 auto; padding:13px 0; font-size:16px; color:var(--body)}
+  .sheet-pdf{
+    flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+    min-height:40px; padding:0 14px; border:1px solid var(--hairline-alt); border-radius:999px;
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; color:var(--gray);
+  }
+  .sheet-pdf:hover{color:var(--accent); border-color:var(--accent)}
 }
 
 /* ---------- footer ---------- */
@@ -777,23 +784,32 @@ details.fallback>summary h3{font-size:16px}
   </div>
 </footer>
 
-<!-- Mobile only. Holds the primary nav, which the header drops below 1000px,
-     plus the guides. Desktop keeps both in the header and the footer. -->
+<!-- Mobile only. Holds the primary nav, which the header drops below 1000px.
+     Tap the row to jump to the section, tap PDF for that topic's one-pager.
+     Desktop keeps the nav in the header and the guides in the rail and footer. -->
 <div class="sheet" id="sheet" hidden>
-  <p>Sections</p>
-  <a href="#automate">What I automate</a>
-  <a href="#how">How it works</a>
-  <a href="#pricing">Pricing</a>
-  <a href="#faq">Questions</a>
-  <a href="#contact">Contact me</a>
-  <p>Guides</p>
-  <a href="/assets/automation-examples.pdf">What can I automate</a>
-  <a href="/assets/pricing.pdf">Pricing</a>
-  <a href="/assets/how-it-works.pdf">How it works</a>
+  <div class="sheet-row">
+    <a class="sheet-jump" href="#automate">What I automate</a>
+    <a class="sheet-pdf" href="/assets/automation-examples.pdf" aria-label="What I automate, one-page PDF">PDF</a>
+  </div>
+  <div class="sheet-row">
+    <a class="sheet-jump" href="#how">How it works</a>
+    <a class="sheet-pdf" href="/assets/how-it-works.pdf" aria-label="How it works, one-page PDF">PDF</a>
+  </div>
+  <div class="sheet-row">
+    <a class="sheet-jump" href="#pricing">Pricing</a>
+    <a class="sheet-pdf" href="/assets/pricing.pdf" aria-label="Pricing, one-page PDF">PDF</a>
+  </div>
+  <div class="sheet-row">
+    <a class="sheet-jump" href="#faq">Questions</a>
+  </div>
+  <div class="sheet-row">
+    <a class="sheet-jump" href="#contact">Contact me</a>
+  </div>
 </div>
 <div class="bottombar">
   <a class="btn" href="#book" style="flex:2 1 auto">Book a call</a>
-  <button class="btn btn-ghost" id="guides-btn" type="button" aria-expanded="false" aria-controls="sheet" style="flex:1 1 auto">Menu</button>
+  <button class="btn btn-ghost" id="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" style="flex:1 1 auto">Menu</button>
 </div>
 
 <script>
@@ -1041,7 +1057,7 @@ Cal.ns.discovery("ui", { hideEventTypeDetails: false, layout: "month_view" });
 
 /* ---------- mobile guides sheet ---------- */
 (function () {
-  var btn = document.getElementById("guides-btn");
+  var btn = document.getElementById("menu-btn");
   var sheet = document.getElementById("sheet");
   if (!btn || !sheet) return;
   btn.addEventListener("click", function (e) {
