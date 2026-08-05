@@ -735,7 +735,6 @@ details.fallback>summary h3{font-size:16px}
       <ul class="chan">
         <li><span class="k">Text or call</span><a class="v" href="tel:+17324700535">732-470-0535</a></li>
         <li><span class="k">Email</span><a class="v" href="mailto:lir@glasautomations.com">lir@glasautomations.com</a></li>
-        <li><span class="k">Hours</span><span class="v">I answer when I&rsquo;m not on a build. Evenings are fine.</span></li>
       </ul>
     </div>
 
@@ -750,7 +749,7 @@ details.fallback>summary h3{font-size:16px}
           <input id="c-reach" name="reach" type="text" autocomplete="email" required>
         </div>
         <div class="field">
-          <label for="c-msg">What&rsquo;s broken?</label>
+          <label for="c-msg">How can I help?</label>
           <textarea id="c-msg" name="message" required></textarea>
         </div>
         <div class="hp" aria-hidden="true">
@@ -1004,7 +1003,7 @@ Cal.ns.discovery("ui", { hideEventTypeDetails: false, layout: "month_view" });
     function confirmSent() {
       var p = document.createElement("p");
       p.className = "thanks";
-      p.innerHTML = "Got it &mdash; I&rsquo;ll get back to you shortly. If it&rsquo;s urgent, text <a href=\"tel:" + TEL + "\">732-470-0535</a>.";
+      p.innerHTML = "Thank you! Someone will connect with you shortly. If it&rsquo;s urgent, you can text <a href=\"tel:" + TEL + "\">732-470-0535</a>.";
       form.parentNode.replaceChild(p, form);
     }
 
